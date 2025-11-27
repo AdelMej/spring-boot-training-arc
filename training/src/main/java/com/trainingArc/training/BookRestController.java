@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BookRestController {
 	
-	@GetMapping("/test")
-	public String helloWorld() {
-		return "Hello world";
+	@GetMapping("/book")
+	public String get() {
+		
+		
+		
+		return "abcd";
 	}
 	
 }
