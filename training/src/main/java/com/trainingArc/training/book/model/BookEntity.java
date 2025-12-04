@@ -1,4 +1,4 @@
-package com.trainingArc.training;
+package com.trainingArc.training.book.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
