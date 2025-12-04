@@ -1,6 +1,8 @@
 package com.trainingArc.training.book.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
+@RequestMapping("/book")
 public class BookRestController {
 
     private final BookService bookService;
@@ -19,11 +22,25 @@ public class BookRestController {
     }
 
 	
-	@GetMapping("/book")
+	@GetMapping
 	public String get(@RequestParam String bookName, @RequestParam Integer bookPages) {
 		
-		System.out.println(bookName);
-		System.out.println(bookPages);
+//		log.info(bookName);
+//		log.info(String.valueOf(bookPages));
+//		
+//		String response = bookService.createBook(bookName, bookPages);
+//		
+//		return response;
+	
+		return "ok GET";
+
+	}
+	
+	@PostMapping
+	public String post(@RequestParam String bookName, @RequestParam Integer bookPages) {
+		
+		log.info(bookName);
+		log.info(String.valueOf(bookPages));
 		
 		String response = bookService.createBook(bookName, bookPages);
 		
