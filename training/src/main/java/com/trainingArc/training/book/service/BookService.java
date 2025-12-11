@@ -1,9 +1,13 @@
 package com.trainingArc.training.book.service;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import com.trainingArc.training.book.exception.BookCreationException;
 import com.trainingArc.training.book.model.BookEntity;
 import com.trainingArc.training.book.persistence.BookRepository;
+
+import io.micrometer.common.util.StringUtils;
 
 @Service
 public class BookService {
@@ -14,7 +18,16 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 	
-	public String createBook(String bookName, Integer bookPages) {
+	public String createBook(String bookName, Integer bookPages) throws BookCreationException {
+	
+		if (bookName == null || StringUtils.isBlank(bookName)) {
+			// return "Le bookName ne peut pas être null ou vide";
+			throw new BookCreationException("Le nom du Livre ne peut pas être null");
+		}
+		
+		if (bookPages == null || bookPages < 1) {
+			throw new BookCreationException("Le nombre de page ne peut pas <= 0");
+		}
 		
 		BookEntity existingbook = bookRepository.findByNameAndPages(bookName, bookPages);
 
@@ -31,7 +44,7 @@ public class BookService {
 			
 		} else {
 			
-			return "le livre existe déjà";
+			throw new BookCreationException("le livre existe déjà");
 		}
 		
 	}
