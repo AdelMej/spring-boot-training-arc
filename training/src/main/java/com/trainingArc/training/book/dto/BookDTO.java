@@ -10,6 +10,13 @@ public class BookDTO {
 	@AllArgsConstructor
 	@Builder
 	public static class PostInput {
+	
+	String bookName;
+	Integer bookPages;
+		
+	}
+	
+	public static class Postoutput {
 		
 	String bookName;
 	Integer bookPages;

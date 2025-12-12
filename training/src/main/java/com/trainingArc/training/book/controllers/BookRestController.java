@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trainingArc.training.book.dto.BookDTO;
+import com.trainingArc.training.book.exception.BookCreationException;
 import com.trainingArc.training.book.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,7 @@ public class BookRestController {
 	}
 	
 	@PostMapping
-	public String post(@RequestBody BookDTO.PostInput input) throws Exception {
+	public String post(@RequestBody BookDTO.PostInput input) throws BookCreationException {
 		
 		log.info(input.getBookName());
 		log.info(String.valueOf(input.getBookPages()));
