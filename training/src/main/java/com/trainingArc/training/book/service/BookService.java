@@ -18,7 +18,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 	
-	public String createBook(String bookName, Integer bookPages) throws BookCreationException {
+	public BookEntity createBook(String bookName, Integer bookPages) throws BookCreationException {
 	
 		if (bookName == null || StringUtils.isBlank(bookName)) {
 			// return "Le bookName ne peut pas être null ou vide";
@@ -28,30 +28,22 @@ public class BookService {
 		if (bookPages == null || bookPages < 1) {
 			throw new BookCreationException("Le nombre de page ne peut pas <= 0");
 		}
-		
-		if(bookPages == null || bookPages <= 0) {
-			
-			return "Le nombre de page ne peut pas être <= 0";
-			
-		}
 
 		BookEntity existingbook = bookRepository.findByNameAndPages(bookName, bookPages);
 
-		if (existingbook == null) {
-			
-			BookEntity newBook = BookEntity.builder()
-										.name(bookName)
-										.pages(bookPages)
-										.build();
-			
-			bookRepository.save(newBook);
-			
-			return "le livre a été crée";
-			
-		} else {
-			
+		if (existingbook != null) {
 			throw new BookCreationException("le livre existe déjà");
 		}
+		
+		BookEntity newBook = BookEntity.builder()
+									.name(bookName)
+									.pages(bookPages)
+									.build();
+			
+		bookRepository.save(newBook);
+			
+		return newBook;
+			
 		
 	}
 	

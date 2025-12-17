@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.trainingArc.training.book.exception.BookCreationException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -18,6 +20,12 @@ public class GlobalExceptionHandler {
 	 
 	@ExceptionHandler(BadRequestException.class)
 	public ResponseEntity<ProblemDetail> catchBadRequest(BadRequestException ex) {
+		ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(pd);
+	}
+	
+	@ExceptionHandler(BookCreationException.class)
+	public ResponseEntity<ProblemDetail> catchBookCreation(BookCreationException ex) {
 		ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(pd);
 	}
