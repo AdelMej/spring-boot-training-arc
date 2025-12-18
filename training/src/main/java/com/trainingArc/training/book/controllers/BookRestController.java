@@ -11,6 +11,7 @@ import com.trainingArc.training.book.dto.BookDTO;
 import com.trainingArc.training.book.exception.BookCreationException;
 import com.trainingArc.training.book.service.BookService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -40,7 +41,7 @@ public class BookRestController {
 	}
 	
 	@PostMapping
-	public String post(@RequestBody BookDTO.PostInput input) throws BookCreationException {
+	public String post(@Valid @RequestBody BookDTO.PostInput input) throws BookCreationException {
 		
 		log.info(input.getBookName());
 		log.info(String.valueOf(input.getBookPages()));
