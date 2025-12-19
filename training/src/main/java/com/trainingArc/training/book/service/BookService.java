@@ -1,6 +1,5 @@
 package com.trainingArc.training.book.service;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import com.trainingArc.training.book.exception.BookCreationException;
