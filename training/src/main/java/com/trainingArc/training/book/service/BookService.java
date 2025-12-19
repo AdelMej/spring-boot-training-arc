@@ -11,7 +11,7 @@ import io.micrometer.common.util.StringUtils;
 @Service
 public class BookService {
 
-    private final BookRepository bookRepository;
+    private final BookRepository bookRepository  ;
 
     BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
@@ -23,7 +23,7 @@ public class BookService {
 			// return "Le bookName ne peut pas être null ou vide";
 			throw new BookCreationException("Le nom du Livre ne peut pas être null");
 		}
-		
+		 
 		if (bookPages == null || bookPages < 1) {
 			throw new BookCreationException("Le nombre de page ne peut pas <= 0");
 		}

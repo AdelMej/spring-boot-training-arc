@@ -16,7 +16,7 @@ public class BookDTO {
 	@NotNull
 	@NotBlank
 	String bookName;
-	
+
 	@NotNull
 	Integer bookPages;
 		

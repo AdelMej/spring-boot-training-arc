@@ -46,6 +46,7 @@ public class BookRestController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public BookDTO.Postoutput post(@Valid @RequestBody BookDTO.PostInput input) throws BookCreationException {
+
 		
 		log.info(input.getBookName());
 		log.info(String.valueOf(input.getBookPages()));
