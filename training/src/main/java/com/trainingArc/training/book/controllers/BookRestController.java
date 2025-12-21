@@ -51,14 +51,15 @@ public class BookRestController {
 		log.info(input.getBookName());
 		log.info(String.valueOf(input.getBookPages()));
 		
-		BookEntity newBook = bookService.createBook(input.getBookName(), input.getBookPages());
+		// TODO : Update create book method
+		BookEntity newBook = bookService.createBook("", input.getBookName(), input.getBookPages());
 		
+		// TODO : Update getter issues
 		return BookDTO.Postoutput.builder()
 				.id(newBook.getId())
 				.bookName(newBook.getName())
 				.bookPages(newBook.getPages())
 				.build();
-		
 	}
 	
 }
